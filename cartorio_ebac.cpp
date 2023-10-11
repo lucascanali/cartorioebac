@@ -141,51 +141,77 @@ int deletar()
 
 int main() 
 {
-    int opcao = 0; // Definindo as variáveis
+    int opcao = 0;
     int x = 1;
+    char usuario[20]; // Variável para o usuário administrador
+    char senha[20];   // Variável para a senha do administrador
+    setlocale(LC_ALL, "Portuguese"); // Definindo a Linguagem
 
-    for (x = 1; x == 1;) 
-	{
+    
+    char usuarioAdmin[] = "admin"; // Nome de usuário e senha do administrador
+    char senhaAdmin[] = "admin";
 
-        system("cls"); // Responsável por limpar a tela
+    printf("### Cartório da EBAC ###\n\n\n");
 
-        setlocale(LC_ALL, "Portuguese"); // Definindo a Linguagem
+   
+    printf("Login de Administrador\n"); // O usuário deve inserir suas credenciais de administrador
+    printf("Usuário: ");
+    scanf("%s", usuario);
+    printf("Senha: ");
+    scanf("%s", senha);
 
-        printf("### Cartório da EBAC ###\n\n\n"); // Início do menu
-        printf("Escolha a opção desejada do menu:\n\n\n");
-        printf("\t1- Registrar Usuário\n");
-        printf("\t2- Consultar Usuário\n");
-        printf("\t3- Deletar Usuário\n");
-        printf("\t4- Sair do Programa\n\n\n"); // Opção para sair do programa
-        printf("Opção: "); // Final do Menu
+    if (strcmp(usuario, usuarioAdmin) == 0 && strcmp(senha, senhaAdmin) == 0) 
+		{
+        printf("Acesso concedido.\n"); // Agora, o programa está autenticado como administrador
+    	} 
+		
+	else 
+		{
+        printf("Acesso negado. Encerrando o programa.\n");
+        return 1; // Encerrar o programa se as credenciais do administrador estiverem incorretas
+    	}
 
-        scanf("%d", &opcao); // Armazenando a escolha do usuário
+    
+    while (x == 1) 
+		{
 
-        system("cls"); // Limpar a tela após a seleção da opção
+        	system("cls"); // Responsável por limpar a tela
 
-        switch (opcao) 
-		{ // Início da seleção do menu
-            case 1:
-                registro(); // Chamada de funções
-                break;
+        	printf("### Cartório da EBAC ###\n\n\n"); // Início do menu
+        	printf("Escolha a opção desejada do menu:\n\n\n");
+       	 	printf("\t1- Registrar Usuário\n");
+        	printf("\t2- Consultar Usuário\n");
+        	printf("\t3- Deletar Usuário\n");
+        	printf("\t4- Sair do Programa\n\n\n"); // Opção para sair do programa
+        	printf("Opção: "); // Final do Menu
 
-            case 2:
-                consulta();
-                break;
+        	scanf("%d", &opcao); // Armazenando a escolha do usuário
 
-            case 3:
-                deletar();
-                break;
+        	system("cls"); // Limpar a tela após a seleção da opção
 
-            case 4: // Opção para sair do programa
-                printf("Programa encerrado. Dados salvos com sucesso!\n\n");
-                return 0;
+        	switch (opcao) 
+				{ // Início da seleção do menu
+            	case 1:
+                	registro(); // Chamada de funções
+                	break;
 
-            default:
-                printf("Esta opção não está disponível.\n\n");
-                system("pause");
-                break;
+            	case 2:
+                	consulta();
+                	break;
 
-        } // Fim da seleção
-    }
+            	case 3:
+                	deletar();
+                	break;
+
+            	case 4: // Opção para sair do programa
+                	printf("Programa encerrado. Dados salvos com sucesso!\n\n");
+                	return 0;
+
+            	default:
+                	printf("Esta opção não está disponível.\n\n");
+                	system("pause");
+                	break;
+
+        		} // Fim da seleção
+    	}
 }
